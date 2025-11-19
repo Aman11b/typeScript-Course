@@ -47,3 +47,48 @@ amount1 = 12 - 1;
 let isAwesome1 = true;
 isAwesome1 = false;
 // isAwesome=3
+
+/**->>>>>>>>>>>>>>>>>>>
+ * CHALLENGE 1
+ ->>>>>>>>>>>>>>>>>>>>>*/
+let chaString: string = "challengeString";
+console.log(chaString.toUpperCase());
+
+let chaNumber: number = 23.3;
+chaNumber += 5;
+console.log(chaNumber);
+
+let isAdult: boolean = chaNumber >= 20;
+isAdult = !isAdult;
+console.log(isAdult);
+
+// ->throw error
+// chaString = 10;
+// chaNumber = "he";
+// isAdult = "YES";
+
+// still ist shows here if you run but when you build it you need to go via TS check and it will fail in build it tsc & vite build thats the reason
+console.log(chaString, chaNumber, isAdult);
+
+/*******************************
+ * UNION TYPE (multiple types for same variable)
+ ********************************/
+let tax: number | string = 10;
+tax = "100";
+tax = 200;
+console.log(tax);
+
+let requestStatus: "pending" | "success" | "error" = "pending";
+requestStatus = "success";
+// requestStatus='random'
+
+/**********************
+ * TYPE ANY (opt out from type checker)
+ **********************/
+
+let notSure: any = 4;
+notSure = "he";
+notSure = true;
+
+let random;
+// right now the type is any
