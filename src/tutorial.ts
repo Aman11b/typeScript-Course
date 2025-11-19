@@ -92,3 +92,32 @@ notSure = true;
 
 let random;
 // right now the type is any
+
+// ->>> Practical Example
+
+const books = ["1984", "Brave New World", "Fahrenheit 451"];
+
+let foundBook: string | undefined;
+
+for (let book of books) {
+  if (book === "Fahrenheit 451") {
+    foundBook = book;
+    foundBook.toUpperCase();
+    break;
+  }
+}
+// type is any
+// foundBook = 10;
+console.log(foundBook?.length, foundBook);
+
+/****************************
+ * UNION TYPE CHALLENGE
+ *****************************/
+
+let discount: number | string = 20;
+discount = "20%";
+// discount=true;
+
+let orderStatus: "processing" | "shipped" | "delivered" = "processing";
+orderStatus = "shipped";
+// orderStatus='cancelled'
