@@ -121,3 +121,61 @@ discount = "20%";
 let orderStatus: "processing" | "shipped" | "delivered" = "processing";
 orderStatus = "shipped";
 // orderStatus='cancelled'
+
+/************************
+ * ARRAY
+ ************************/
+
+let price: number[] = [10, 12, 32];
+// price.push("hello");
+
+let fruit: string[] = ["a", "b"];
+
+// let randomValue: [] = [1, 2, 3];
+// TS assume that this will always be empty array
+
+let emptyValue = [1, 2, "4"];
+let ary: (string | number)[] = ["a", 1];
+
+/****************************
+ * array challenge
+ *******************************/
+let temperatures: number[] = [20, 25, 70];
+// temperatures.push("hot");
+let colors: string[] = ["red", "green"];
+// colors.push(true);
+let mixed: (number | string)[] = [1, "two"];
+// mixed.push(true)
+
+/*******************
+ * OBJECT Fundamentals
+ ********************/
+
+let car: { brand: string; year: number } = { brand: "toyota", year: 2020 };
+car.brand = "ford";
+// car.color='blue';
+
+let car1: {
+  brand: string;
+  year: number;
+} = { brand: "audi", year: 2020 };
+
+let book = { title: "book", cost: 20 };
+let pen = { title: "pen", cost: 10 };
+let notebook = { title: "notebook" };
+
+let items: { readonly title: string; cost?: number }[] = [book, pen, notebook];
+// items[0].title="new book";
+
+// OBJECT CHALLENGE
+
+let bike: { brand: string; year: number } = { brand: "yamaha", year: 2020 };
+// bike.year='old'
+
+let laptop: { brand: string; year: number } = { brand: "dell", year: 2001 };
+// let lap2:{brand:string;year:number}={brand:"HP"}
+
+let product1 = { title: "shirt", price: 20 };
+let product2 = { title: "pant" };
+
+let products: { title: string; price?: number }[] = [product1, product2];
