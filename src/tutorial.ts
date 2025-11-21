@@ -179,3 +179,27 @@ let product1 = { title: "shirt", price: 20 };
 let product2 = { title: "pant" };
 
 let products: { title: string; price?: number }[] = [product1, product2];
+
+/*************************
+ * FUNCTIONS
+ ***************************/
+
+// -> function parameter
+//-> any
+//-> config   "strict": true,  false
+//-> type
+
+function sayHi(name: string) {
+  console.log(`Hello ${name.toUpperCase()}`);
+}
+sayHi("jhon");
+// sayHi(3)
+
+// function return
+function calculateDiscount(price: number): number {
+  return price * 0.9;
+}
+
+const finalPrice = calculateDiscount(200);
+
+// type any
