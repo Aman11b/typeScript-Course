@@ -237,3 +237,44 @@ function logMessage(message: string) {
   console.log(message);
 }
 logMessage(`Hello, Typescript`);
+
+/**
+ * TYPE GUARD
+ */
+function processInput(input: string | number) {
+  console.log(input);
+  // console.log(input*2)
+  if (typeof input === "number") {
+    console.log(input * 2);
+  } else {
+    console.log(input.toLocaleLowerCase());
+  }
+}
+processInput(10);
+processInput("HELLO");
+
+// OBJECT AS PARAMETER
+function createEmployee({ id }: { id: number }): {
+  id: number;
+  isActive: boolean;
+} {
+  return { id, isActive: id % 2 === 0 };
+}
+
+const first = createEmployee({ id: 1 });
+console.log(first);
+
+// alternative
+function createStudent(student: { id: number; name: string }): void {
+  console.log(`Welcome ${student.name.toUpperCase()}!!!`);
+}
+const newStudent = {
+  id: 5,
+  name: "anna",
+  email: "anna@gmail.com",
+};
+createStudent(newStudent);
+
+// excess property check
+
+createStudent({ id: 1, name: "bob", email: "bobo@gmail.com" });
