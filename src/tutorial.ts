@@ -278,3 +278,21 @@ createStudent(newStudent);
 // excess property check
 
 createStudent({ id: 1, name: "bob", email: "bobo@gmail.com" });
+
+// Function challenge 2
+function processDate(
+  input: string | number,
+  config: { reverse: boolean } = { reverse: false }
+): string | number {
+  if (typeof input === "number") {
+    return input * input;
+  } else {
+    return config.reverse
+      ? input.toUpperCase().split("").reverse().join("")
+      : input.toUpperCase();
+  }
+}
+
+console.log(processDate(10));
+console.log(processDate("hello"));
+console.log(processDate("hello", { reverse: true }));
