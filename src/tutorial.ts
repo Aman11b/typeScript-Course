@@ -296,3 +296,30 @@ function processDate(
 console.log(processDate(10));
 console.log(processDate("hello"));
 console.log(processDate("hello", { reverse: true }));
+
+/**
+ * type alias
+ */
+
+type USER = { id: number; name: string; isActive: boolean };
+
+const john: USER = {
+  id: 1,
+  name: "john",
+  isActive: true,
+};
+const susan: USER = {
+  id: 1,
+  name: "susan",
+  isActive: false,
+};
+
+function createUser(user: USER): {
+  id: number;
+  name: string;
+  isActive: boolean;
+} {
+  console.log(`Hello there ${user.name.toUpperCase()} !!!`);
+
+  return user;
+}
