@@ -323,3 +323,57 @@ function createUser(user: USER): {
 
   return user;
 }
+
+type StringOrNumber = string | number;
+let value: StringOrNumber;
+value = ":hell";
+value = 3;
+
+type Theme = "light" | "dark";
+let theme: Theme;
+theme = "dark";
+theme = "light";
+
+function setTheme(t: Theme) {
+  theme = t;
+  console.log(t);
+}
+setTheme("light");
+
+// challenge alias
+type Employee = { id: number; name: string; department: string };
+type Manager = { id: number; name: string; employees: Employee[] };
+
+type Staff = Employee | Manager;
+
+function printStaffDetailes(staff: Staff): void {
+  if ("employees" in staff) {
+    console.log(
+      `${staff.name} is an Manager in the ${staff.employees.length} employees`
+    );
+  } else {
+    console.log(
+      `${staff.name} is an employee in the ${staff.department} department`
+    );
+  }
+}
+
+const alice: Employee = {
+  id: 1,
+  name: "alice",
+  department: "sales",
+};
+const bravo: Employee = {
+  id: 2,
+  name: "bravo",
+  department: "IT",
+};
+
+const Bob: Manager = {
+  id: 1,
+  name: "bob",
+  employees: [alice, bravo],
+};
+
+printStaffDetailes(Bob);
+printStaffDetailes(alice);
