@@ -377,3 +377,35 @@ const Bob: Manager = {
 
 printStaffDetailes(Bob);
 printStaffDetailes(alice);
+
+/**
+ * Intersection Type
+ */
+type Book = { id: number; name: string; price: number };
+const book1: Book = {
+  id: 1,
+  name: "kafka on shores",
+  price: 250,
+};
+
+const book2: Book = {
+  id: 2,
+  name: "noreign woods",
+  price: 350,
+};
+
+const dicountedBook: Book & { discount: number } = {
+  id: 3,
+  name: "white night",
+  price: 200,
+  discount: 0.15,
+};
+
+/**
+ * computed properties
+ */
+const propName = "age";
+type Animal = {
+  [propName]: number;
+};
+let tiger: Animal = { [propName]: 5 };
