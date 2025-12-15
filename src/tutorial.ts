@@ -409,3 +409,95 @@ type Animal = {
   [propName]: number;
 };
 let tiger: Animal = { [propName]: 5 };
+
+/**
+ * INTERFACE -> shape of object only object
+ */
+
+// this will just have a blue print
+interface Book1 {
+  readonly isbn: number;
+  title: string;
+  author: string;
+  genre?: string;
+  // method
+  printAuthor(): void;
+  printTitle(message: string): string;
+  // alternative way to set method
+  // property as a function
+  printSomething: (someValue: number) => number;
+}
+
+// type alias
+const deepWork: Book1 = {
+  isbn: 123,
+  title: "deep work",
+  author: "carl",
+  genre: "self help",
+  // price:100
+  // printAuthor() {
+  //   console.log(this.author);
+  // },
+  printTitle(value) {
+    return `${this.title} ${value}`;
+  },
+  // alternative way to set method
+  // 1st option
+
+  printSomething: function (someValue) {
+    return someValue;
+  },
+
+  // 2nd option
+  // => catch the global this
+
+  // printSomething: (someValue) => {
+  //   // console.log(this)
+  //   console.log(deepWork.author);
+  //   return someValue;
+  // },
+
+  // 3rd option
+
+  // printSomething(someValue) {
+  //   return someValue;
+  // },
+
+  printAuthor: () => {
+    console.log(deepWork.author);
+  },
+};
+
+// deepWork.isbn=234;
+
+// interface method
+deepWork.printAuthor();
+console.log(deepWork.printTitle("is an awasome book"));
+
+// alternative way to set method
+console.log(deepWork.printSomething(34));
+deepWork.printAuthor();
+
+// challenge
+interface Computer {
+  readonly id: number;
+  brand: string;
+  ram: number;
+  upgreadeRam(increase: number): number;
+  storage?: number;
+}
+
+const laptop1: Computer = {
+  id: 1,
+  brand: "random brand",
+  ram: 8,
+  upgreadeRam(amount) {
+    this.ram += amount;
+    return this.ram;
+  },
+};
+laptop1.storage = 256;
+laptop1.upgreadeRam(4);
+console.log(laptop1);
+
+// interface merge and extend
