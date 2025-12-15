@@ -500,4 +500,68 @@ laptop1.storage = 256;
 laptop1.upgreadeRam(4);
 console.log(laptop1);
 
-// interface merge and extend
+/**
+ * // interface merge and extend
+ */
+interface Person {
+  name: string;
+  getDetaile(): string;
+}
+interface DogOwner {
+  dogName: string;
+  getDogDetails(): string;
+}
+
+interface Person {
+  age: number;
+}
+
+// interface merge
+const person: Person = {
+  name: "jhon",
+  age: 30,
+  getDetaile() {
+    return `Name: ${this.name} ,Age: ${this.age}`;
+  },
+};
+
+console.log(person.getDetaile());
+
+// extend interface
+
+interface Employee1 extends Person {
+  employeeId: number;
+}
+const employee2: Employee1 = {
+  name: "jane",
+  age: 28,
+  employeeId: 123,
+  getDetaile() {
+    return `Name: ${this.name}, Aage: ${this.age}, Employee ID" ${this.employeeId}`;
+  },
+};
+
+console.log(employee2);
+
+interface Manager1 extends Person, DogOwner {
+  managePeopple(): void;
+}
+
+const manager: Manager1 = {
+  name: "bablu",
+  age: 23,
+  dogName: "rex",
+  getDetaile() {
+    return `Name: ${this.name}, Aage: ${this.age}`;
+  },
+  getDogDetails() {
+    return `Name: ${this.dogName}`;
+  },
+  managePeopple() {
+    console.log("managing people...");
+  },
+};
+
+manager.managePeopple();
+console.log(manager.getDetaile());
+console.log(manager.getDogDetails());
