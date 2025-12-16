@@ -565,3 +565,53 @@ const manager: Manager1 = {
 manager.managePeopple();
 console.log(manager.getDetaile());
 console.log(manager.getDogDetails());
+
+// challenge
+
+console.log("------------challenge---------");
+interface Person2 {
+  name: string;
+}
+interface DogOwner2 extends Person2 {
+  dogName: string;
+}
+interface Manager2 extends Person2 {
+  managePeople(): void;
+  delegateTask(): void;
+}
+function getEmployee2(): Person2 | DogOwner2 | Manager2 {
+  const random = Math.random();
+  if (random < 0.33) {
+    return {
+      name: "jhon",
+    };
+  } else if (random < 0.66) {
+    return {
+      name: "tom",
+      dogName: "rex",
+    };
+  } else {
+    return {
+      name: "bob",
+      managePeople() {
+        console.log("managing people...");
+      },
+      delegateTask() {
+        console.log("delegrating task...");
+      },
+    };
+  }
+}
+const emp: Person2 | Manager2 | DogOwner2 = getEmployee2();
+console.log(emp);
+console.log(emp.name);
+// console.log(emp.delegrateTask());
+
+function isManager(obj: Person2 | DogOwner2 | Manager2): obj is Manager2 {
+  return "managePeople" in obj;
+}
+if (isManager(emp)) {
+  emp.delegateTask();
+}
+
+console.log(isManager(emp));
