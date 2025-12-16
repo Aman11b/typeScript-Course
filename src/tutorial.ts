@@ -615,3 +615,28 @@ if (isManager(emp)) {
 }
 
 console.log(isManager(emp));
+
+/**
+ * TUPLES
+ */
+
+console.log("----------tuples--------");
+let per: [string, number] = ["jhon", 25];
+// let per: [string, number] = [25, "jhon"];
+// let per: [string, number] = ["jhon", 25,true];
+let date: readonly [number, number, number] = [12, 17, 2001];
+// date.push("hello")
+// date.push(34);
+console.log(date);
+function getPerson(): [string, number] {
+  return ["jhon", 25];
+}
+let randomPerson = getPerson();
+console.log(randomPerson[0]);
+
+let sus: [string, number?] = ["susan"];
+
+/**
+ * ENUMs
+ */
+console.log("------------ENUMS------------");
