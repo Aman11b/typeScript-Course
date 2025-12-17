@@ -640,3 +640,55 @@ let sus: [string, number?] = ["susan"];
  * ENUMs
  */
 console.log("------------ENUMS------------");
+enum ServerResponseStatus {
+  Success = 200,
+  Error = 500,
+}
+
+interface ServerResponse {
+  result: ServerResponseStatus;
+  data: string[];
+}
+function getServerResponse(): ServerResponse {
+  return {
+    result: ServerResponseStatus.Success,
+    data: ["first item", "second item"],
+  };
+}
+
+const response: ServerResponse = getServerResponse();
+console.log(ServerResponseStatus);
+console.log(response);
+
+Object.values(ServerResponseStatus).forEach((value) => {
+  // console.log(value);
+  if (typeof value === "number") {
+    console.log(value);
+  }
+});
+
+// challenge
+enum UserRole {
+  Admin,
+  Manager,
+  Employee,
+}
+
+type User = {
+  id: number;
+  name: string;
+  role: UserRole;
+  contact: [string, string];
+};
+
+function createUser1(user: User): User {
+  return user;
+}
+const user: User = createUser1({
+  id: 1,
+  name: "jhon dear",
+  role: UserRole.Admin,
+  contact: ["jhon@gmail.com", "1234"],
+});
+
+console.log(user);
