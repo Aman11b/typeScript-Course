@@ -673,6 +673,8 @@ enum UserRole {
   Manager,
   Employee,
 }
+// reverse mapping
+console.log(UserRole[0]);
 
 type User = {
   id: number;
@@ -692,3 +694,46 @@ const user: User = createUser1({
 });
 
 console.log(user);
+
+/**
+ * Type assertion
+ */
+console.log("---------type assertion----");
+
+let some: any = "this is a string";
+let strLength: number = (some as string).length;
+console.log(strLength);
+
+type Bird = {
+  name: string;
+};
+let birdString = '{"name":"eagle"}';
+let dogString = '{"breed":"poodle"}';
+
+// here type is any
+let birdObject = JSON.parse(birdString);
+let dogObject = JSON.parse(dogString);
+
+let bird = birdObject as Bird;
+let dog = dogObject as Bird;
+
+console.log(bird.name);
+console.log(dog.name);
+// name is in bird object not dog
+
+enum Status {
+  Pending = "Pending",
+  Declined = "Declined",
+}
+
+type User1 = {
+  name: string;
+  status: Status;
+};
+
+// save Status.Pending in DB as string
+// retreieve staring from DB
+
+const statusValue = "pending";
+
+const user1: User1 = { name: "jhon", status: statusValue as Status };
