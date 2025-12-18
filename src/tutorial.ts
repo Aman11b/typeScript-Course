@@ -737,3 +737,38 @@ type User1 = {
 const statusValue = "pending";
 
 const user1: User1 = { name: "jhon", status: statusValue as Status };
+
+/**
+ * TYPE unknown type safe counterpart of type any
+ */
+
+let unknownValue: unknown;
+unknownValue = "hellow";
+unknownValue = [1, 3, 5];
+unknownValue = 42.5;
+
+// unknownValue.toFixed(2)
+
+if (typeof unknownValue === "number") {
+  unknownValue.toFixed(2);
+}
+
+function runSomeCode() {
+  const random = Math.random();
+  if (random < 0.5) {
+    throw new Error("there was error...");
+  } else {
+    throw "string";
+  }
+}
+
+try {
+  runSomeCode();
+} catch (error) {
+  // console.log(error.message);
+  if (error instanceof Error) {
+    console.log(error.message);
+  } else {
+    console.log(error);
+  }
+}
