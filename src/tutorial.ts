@@ -832,7 +832,6 @@ import newStudent1, { sayHello, person2, type Student1 } from "./action";
 // import {someValue} from './example.js';
 // can be worked out with allowJS:true but be carefull
 
-
 sayHello("Tyepscript");
 console.log(newStudent1);
 console.log(person2);
@@ -842,3 +841,27 @@ const anotherStudent: Student1 = {
   age: 23,
 };
 console.log(anotherStudent);
+
+/**
+ * TYPE GUARDING
+ */
+console.log("---type guarding tyoeof---");
+
+type ValueType = string | number | boolean;
+let value1: ValueType;
+const random1 = Math.random();
+value1 = random1 < 0.33 ? "hello" : random1 < 0.66 ? 123.456 : true;
+
+function checkValue1(value: ValueType): void {
+  if (typeof value === "string") {
+    console.log(value.toLowerCase());
+    return;
+  }
+  if (typeof value === "number") {
+    console.log(value.toFixed(2));
+    return;
+  }
+  console.log(`Boolean: ${value}`);
+}
+
+checkValue1(value1);
