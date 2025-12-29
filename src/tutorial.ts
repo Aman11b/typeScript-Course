@@ -822,5 +822,23 @@ console.log(getColorName(Color.green));
 
 /**
  * MODULES
+ * in TS what ever you put in file is by defaut in global space
+ * the moment import export used it becomes like ES6
+ * or in moduleDetection:"force"
+ *
  */
 console.log("----------Modules-----------");
+import newStudent1, { sayHello, person2, type Student1 } from "./action";
+// import {someValue} from './example.js';
+// can be worked out with allowJS:true but be carefull
+
+
+sayHello("Tyepscript");
+console.log(newStudent1);
+console.log(person2);
+
+const anotherStudent: Student1 = {
+  name: "bob",
+  age: 23,
+};
+console.log(anotherStudent);
