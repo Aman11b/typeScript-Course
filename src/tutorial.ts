@@ -772,3 +772,55 @@ try {
     console.log(error);
   }
 }
+
+/**
+ * Type never -> type that never occur you cant assign any value to a variable of type never
+ * If TypeScript can prove that all possible Color values were handled, then the remaining value is never.
+ */
+console.log("-----type never ------");
+// let somenever:never=0;
+type theme1 = "light" | "dark";
+function checkTheme(theme1): void {
+  if (theme1 === "light") {
+    console.log("light theme");
+    return;
+  }
+  if (theme1 === "dark") {
+    console.log("dark theme");
+    return;
+  }
+  theme1;
+}
+
+enum Color {
+  Red,
+  Blue,
+  green,
+}
+
+function getColorName(color: Color) {
+  switch (color) {
+    case Color.Red:
+      return "Red";
+    case Color.Blue:
+      return "blue";
+    case Color.green:
+      return "green";
+
+    default:
+      //at built time
+      let unexpectedColor: never = color;
+
+      //defaut too is in runtime
+      throw new Error(`Unexpected color value: ${color}`);
+  }
+}
+console.log(getColorName(Color.Red));
+console.log(getColorName(Color.Blue));
+// FAILED SILENTLY -> UNDEFINED
+console.log(getColorName(Color.green));
+
+/**
+ * MODULES
+ */
+console.log("----------Modules-----------");
