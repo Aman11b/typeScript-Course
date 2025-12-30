@@ -929,3 +929,42 @@ const year = checkInput(new Date());
 const randYear = checkInput("2020-05-23");
 console.log(year);
 console.log(randYear);
+
+console.log("-----type guard type predicate-----------");
+// return type is a special kind of type that can be used to narrow down types within conditional block
+
+type Student2 = {
+  name: string;
+  study: () => void;
+};
+type User2 = {
+  name: string;
+  login: () => void;
+};
+
+type Person1 = Student2 | User2;
+
+const randomPerson1 = (): Person1 => {
+  return Math.random() > 0.5
+    ? { name: "john", study: () => console.log("Stydying") }
+    : { name: "mary", login: () => console.log("Logging in") };
+};
+
+const person1 = randomPerson1();
+
+// const person1: Person1 = {
+//   name: "anna",
+//   study: () => console.log("study..."),
+// };
+
+console.log(person1);
+
+function isStudent(person: Person1): person is Student2 {
+  // return "study" in person;
+  return (person as Student2).study !== undefined;
+}
+if (isStudent(person1)) {
+  person1.study();
+} else {
+  person1.login();
+}
