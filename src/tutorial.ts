@@ -892,3 +892,15 @@ function makeSound(animal: Animal1) {
 
 console.log("----truthly and falsy------------");
 
+function printLength(str: string | null | undefined) {
+  if (str) {
+    console.log(str.length);
+  } else {
+    console.log("no string provided");
+  }
+}
+printLength("hello");
+printLength("");
+printLength(null);
+printLength();
+printLength(undefined);
