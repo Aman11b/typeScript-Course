@@ -865,3 +865,30 @@ function checkValue1(value: ValueType): void {
 }
 
 checkValue1(value1);
+
+console.log("--type guard equality and in------");
+
+type Dog1 = { type: "dog"; name: string; bark: () => void };
+type Cat1 = { type: "cat"; name: string; meaw: () => void };
+type Animal1 = Dog1 | Cat1;
+
+// -> checking property
+// function makeSound(animal: Animal1) {
+//   if (animal.type === "dog") {
+//     animal.bark();
+//   } else {
+//     animal.meaw();
+//   }
+// }
+
+// checking method
+function makeSound(animal: Animal1) {
+  if ("bark" in animal) {
+    animal.bark();
+  } else {
+    animal.meaw();
+  }
+}
+
+console.log("----truthly and falsy------------");
+
