@@ -968,3 +968,39 @@ if (isStudent(person1)) {
 } else {
   person1.login();
 }
+
+console.log("------Discriminate Union-----");
+// property with string value
+type IncrementAction = {
+  type: "increment";
+  amount: number;
+  timestamp: number;
+  user: string;
+};
+type DecrementAction = {
+  type: "decrement";
+  amount: number;
+  timrstamp: number;
+  user: string;
+};
+type Action = IncrementAction | DecrementAction;
+
+function reducer(state: number, action: Action) {
+  switch (action.type) {
+    case "increment":
+      return state + action.amount;
+    case "decrement":
+      return state - action.amount;
+
+    default:
+      const UnexpectedAction: never = action;
+      throw new Error(`Unexpected actio : ${UnexpectedAction}`);
+  }
+}
+
+const newState = reducer(15, {
+  user: "jhon",
+  type: "increment",
+  amount: 5,
+  timestamp: 12345,
+});
