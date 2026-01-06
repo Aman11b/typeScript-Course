@@ -1004,3 +1004,122 @@ const newState = reducer(15, {
   amount: 5,
   timestamp: 12345,
 });
+
+/**
+ * GENERICS
+ */
+
+console.log("----generics-----");
+
+// let array1:string[]=["apple","banana","mango"];
+// let array2:number[]=[1,2,3];
+// let arrya3:boolean[]=[true,false,true];
+// to avoid this we use generic
+
+let array1: Array<string> = ["apple", "banana", "mango"];
+let array2: Array<number> = [1, 2, 3];
+let array3: Array<boolean> = [true, false, true];
+
+//-> create generic function
+
+// function createString(arg: string): string {
+//   return arg;
+// }
+
+// function createNumber(arg: number): number {
+//   return arg;
+// }
+
+function genericFunction<T>(arg: T): T {
+  return arg;
+}
+
+const someStringValue = genericFunction<string>("string");
+const someNumericValue = genericFunction<number>(23);
+
+console.log(someNumericValue);
+console.log(someStringValue);
+
+// generic interface
+interface genericInterface<T> {
+  value: T;
+  getValue: () => T;
+}
+
+const genericString: genericInterface<string> = {
+  value: "hello",
+  getValue() {
+    return this.value;
+  },
+};
+
+console.log(genericString);
+
+// async function someFunction(): string {
+//   return "hello";
+
+//   // error async return promise not string
+// }
+
+async function someFunction(): Promise<string> {
+  return "hello";
+
+  // error async return promise not string
+}
+
+const result1 = someFunction();
+
+// create array
+
+function generateStringArray(length: number, value: string): string[] {
+  let result: string[] = [];
+  result = Array(length).fill(value);
+  return result;
+}
+
+console.log(generateStringArray(6, "hi"));
+
+function generateArray<T>(length: number, value: T): Array<T> {
+  let result: T[] = [];
+  result = Array(length).fill(value);
+  return result;
+}
+
+let arrayNum = generateArray<number>(10, 5);
+console.log(arrayNum);
+console.log(generateArray(5, "hi"));
+
+// multiple types
+function pair<T, U>(param1: T, param2: U): [T, U] {
+  return [param1, param2];
+}
+
+let result2 = pair<number, string>(2, "hi");
+console.log(result2);
+
+// type constraints
+
+// const [name,setName]=useState('')
+// const [products,setProducts]=useState<Product []>([])
+
+// making generic specific
+function processValue<T extends string | number>(value: T): T {
+  console.log(value);
+  return value;
+}
+
+processValue("helo");
+processValue(3);
+
+// Default Type -> userful when we dont know the shape of data
+
+interface StoreDate<T = any> {
+  data: T[];
+}
+const storeNumber: StoreDate<number> = {
+  data: [1, 2, 3, 4, 5, 6],
+};
+
+const randomDate: StoreDate = {
+  data: ["s", "r", 2, 3, 4],
+};
