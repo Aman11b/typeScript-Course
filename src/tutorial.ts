@@ -1123,3 +1123,67 @@ const storeNumber: StoreDate<number> = {
 const randomDate: StoreDate = {
   data: ["s", "r", 2, 3, 4],
 };
+
+/**
+ * Fetch Data
+ * ZOD
+ */
+
+console.log("----------Fetch Data -------------");
+import { z } from "zod";
+
+const url = "https://www.course-api.com/react-tours-project";
+
+// type Tour = {
+//   id: string;
+//   name: string;
+//   info: string;
+//   image: string;
+//   price: string;
+//   something: boolean;
+//   // not complaining but will get undefined TS cant check it in runtime
+//   // we can do check it by zod library to validate the data at runtime
+// };
+
+const tourSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  info: z.string(),
+  image: z.string(),
+  price: z.string(),
+  // something:z.boolean();
+  // not this will trigger error
+});
+
+type Tour = z.infer<typeof tourSchema>;
+
+async function fetchData(url: string): Promise<Tour[]> {
+  try {
+    const response = await fetch(url);
+    // coz it dont track 404 error
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const rawdata: Tour[] = await response.json();
+    // console.log(data);
+    const result = tourSchema.array().safeParse(rawdata);
+    if (!result.success) {
+      throw new Error(`Invalid data: ${result.error}`);
+    }
+    console.log("--here is the result--");
+    console.log(result);
+    return result.data;
+  } catch (error) {
+    const errMsg =
+      error instanceof Error ? error.message : "there was an erroe";
+    console.log(errMsg);
+    return [];
+  }
+}
+
+const tours = await fetchData(url);
+// type is any so need to change
+tours.map((tour: Tour) => {
+  console.log(tour.name);
+  console.log(tour.price);
+});
