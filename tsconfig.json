@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
+    // control output code
     "target": "ES2022",
     "useDefineForClassFields": true,
+    // what kinfod madule syntax we are using
     "module": "ESNext",
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "types": ["vite/client"],
@@ -15,6 +17,7 @@
     "noEmit": true,
 
     /* Linting */
+    // which type or error warning comes up
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,

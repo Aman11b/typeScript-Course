@@ -1187,3 +1187,104 @@ tours.map((tour: Tour) => {
   console.log(tour.name);
   console.log(tour.price);
 });
+
+// declaration file
+// TS config
+
+/**
+ * CLASSES
+ * defaut property
+ * read only modifier
+ * private and public modifer
+ */
+
+class Book3 {
+  // read only modifier
+  public readonly title: string;
+  private author: string;
+  // defaut property
+  private checkedOut: boolean = false;
+
+  constructor(title: string, author: string) {
+    this.title = title;
+    this.author = author;
+  }
+
+  public checkOut() {
+    this.checkedOut = this.toggleCheckedOutStatus();
+  }
+
+  public isCheckedOut() {
+    return this.checkedOut;
+  }
+  private toggleCheckedOutStatus() {
+    return !this.checkedOut;
+  }
+}
+
+const deepWork1 = new Book3("Deep work", "carl");
+// console.log(deepWork1.checkedOut);
+deepWork1.checkOut();
+console.log(deepWork1);
+console.log(deepWork1.title);
+// console.log(deepWork1.author)
+// deepWork1.title="hehe";
+
+deepWork1.checkOut();
+console.log(deepWork1.isCheckedOut());
+deepWork1.checkOut();
+console.log(deepWork1);
+
+// constructor shotcut
+class NewBook {
+  private checkedOut: boolean = false;
+  constructor(
+    readonly title: string,
+    public author: string,
+    private cost: number = 40
+  ) {}
+  public getSomeValue() {
+    return this.cost;
+  }
+
+  get info() {
+    return `${this.title} by ${this.author}`;
+  }
+
+  private set checkMe(checkedOut: boolean) {
+    this.checkedOut = checkedOut;
+  }
+
+  get checkOut() {
+    return this.checkedOut;
+  }
+
+  get someInfo() {
+    this.checkMe = true;
+    return `${this.title} by ${this.author} `;
+  }
+}
+const dw = new NewBook("kafka on shored", "murakami");
+console.log(dw.getSomeValue());
+console.log(dw.info);
+// dw.checkMe = true;
+console.log(dw);
+
+console.log(dw.someInfo);
+console.log(dw);
+
+// implement interface
+interface IPerson {
+  name: string;
+  age: number;
+  greet(): void;
+}
+class PP implements IPerson {
+  constructor(public name: string, public age: number) {}
+  greet(): void {
+    console.log(`hello hehe my name is ${this.name} and my age is ${this.age}`);
+  }
+}
+
+const hipster = new PP("hispster", 45);
+console.log(hipster);
